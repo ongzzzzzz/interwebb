@@ -1,6 +1,7 @@
-<!-- page.mdx -->
-
-<!-- Apply katex css -->
+---
+title: 'Math'
+date: '2020-01-01'
+---
 
 <link
   rel="stylesheet"
