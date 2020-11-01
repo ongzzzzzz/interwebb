@@ -6,10 +6,21 @@ body {
     Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   line-height: 1.6;
   font-size: 18px;
+
+  transition: all .2s ease-out;
 }
 
 * {
   box-sizing: border-box;
+}
+
+*::-webkit-scrollbar {
+  width: 12px;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: white;
+  border-radius: 20px;
+  border: 3px solid gray;
 }
 
 a {
@@ -24,4 +35,32 @@ a:hover {
 img {
   max-width: 100%;
   display: block;
+}
+
+.icon{
+  border-radius: 69696969px;
+  padding: 6px;
+  font-size: 2rem;
+  backdrop-filter: invert(50%);
+  transition: 0.2s;
+}
+.icon:hover{
+  cursor: pointer;
+  backdrop-filter: invert(25%);
+}
+
+.sun{
+  background-color: gray;
+  
+}
+.moon{
+  background-color: yellow;
+}
+
+.icon-dark:active{
+  background-color: white;
+}
+
+.icon-light:active{
+  background-color: black;
 }

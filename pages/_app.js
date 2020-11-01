@@ -1,9 +1,19 @@
-import React, { useState } from 'react'
-import { GeistProvider, CssBaseline, Button } from '@geist-ui/react'
+import { useState } from 'react'
+import { GeistProvider, CssBaseline } from '@geist-ui/react'
+
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fas } from '@fortawesome/free-solid-svg-icons'
+import { fab } from '@fortawesome/free-brands-svg-icons'
+import { far } from '@fortawesome/free-regular-svg-icons'
+library.add(fas, fab, far)
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+import Header from '../components/header'
+import Footer from '../components/footer'
+
 import '../styles/globals.css'
 
-function MyApp({ Component, pageProps }) {
-
+export default function MyApp({ Component, pageProps }) {
   const [themeType, setThemeType] = useState('dark')
   const switchThemes = () => {
     setThemeType(lastThemeType => (lastThemeType === 'dark' ? 'light' : 'dark'))
@@ -12,10 +22,14 @@ function MyApp({ Component, pageProps }) {
   return (
     <GeistProvider theme={{ type: themeType }}>
       <CssBaseline />
-      <Button onClick={switchThemes}>Toggle</Button>
+      <Header>
+        <FontAwesomeIcon 
+          icon={themeType === 'dark' ? ['fas', 'sun'] : ['fas', 'moon']} 
+          onMouseUp={switchThemes} 
+          className={themeType === 'dark' ? 'icon icon-dark sun' : 'icon icon-light moon'}
+        />
+      </Header>
       <Component {...pageProps} />
     </GeistProvider>
   )
 }
-
-export default MyApp
