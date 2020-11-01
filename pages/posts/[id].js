@@ -9,6 +9,18 @@ export default function Post({ postData }) {
         <Layout>
             <Head>
                 <title>{postData.title}</title>
+                <link
+                    rel="stylesheet"
+                    href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.16.0/themes/prism-okaidia.min.css"
+                    integrity="sha256-Ykz0nNWK7w4QWJUYR7OraN4773aMB/11aMt1nZyrhuQ="
+                    crossOrigin="anonymous"
+                />
+                <link
+                    rel="stylesheet"
+                    href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+                    integrity="sha384-BdGj8xC2eZkQaxoQ8nSLefg4AV4/AwB3Fj+8SUSo7pnKP6Eoy18liIKTPn9oBYNG"
+                    crossOrigin="anonymous"
+                />
             </Head>
             <article>
                 <h1 className={utilStyles.headingXl}>{postData.title}</h1>
@@ -16,6 +28,7 @@ export default function Post({ postData }) {
                 <Date dateString={postData.date} />
                 </div>
                 <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
+                {/* <div>{postData.contentHtml}</div> */}
             </article>
         </Layout>
     )

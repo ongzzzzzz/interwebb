@@ -10,7 +10,7 @@ when you see this post, the site will most probably still be under construction 
 
 so anyways i'll keep working on the site while i get the workflows setup... enjoy the blank site lmao
 
-```jsx
+<!-- ```jsx
 
 import React from "react";
 
@@ -19,3 +19,11 @@ const CoolComponent = () => <div>I'm a cool component!!</div>;
 export default CoolComponent;
 
 ```
+
+testing out latex in markdown!
+
+Lift($L$) can be determined by Lift Coefficient ($C_L$) like the following equation.
+
+$$
+L = \frac{1}{2} \rho v^2 S C_L
+$$ -->
