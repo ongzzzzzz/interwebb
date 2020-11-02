@@ -15,12 +15,17 @@ export default function Post({ postData }) {
                     integrity="sha256-Ykz0nNWK7w4QWJUYR7OraN4773aMB/11aMt1nZyrhuQ="
                     crossOrigin="anonymous"
                 />
+                
                 <link
                     rel="stylesheet"
                     href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
                     integrity="sha384-BdGj8xC2eZkQaxoQ8nSLefg4AV4/AwB3Fj+8SUSo7pnKP6Eoy18liIKTPn9oBYNG"
                     crossOrigin="anonymous"
                 />
+                <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+                <script id="MathJax-script" async
+                        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+                </script>
             </Head>
             <article>
                 <h1 className={utilStyles.headingXl}>{postData.title}</h1>
