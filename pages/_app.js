@@ -23,17 +23,6 @@ export default function MyApp({ Component, pageProps }) {
   return (
     <GeistProvider theme={{ type: themeType }}>
       <CssBaseline />
-      <Head>
-        <meta name="viewport" content="width=device-width"/>
-        
-        {/* <link rel="manifest" href="/manifest.json"/> */}
-        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
-        <link rel="icon" href="/favicon.ico" type="image/x-icon"/>
-
-        <link rel="apple-touch-icon" href="../public/images/profile.png"/>
-        <meta name="apple-mobile-web-app-status-bar" content="#FFE1C4"/>
-        <meta name="theme-color" content="#FFE1C4"/>
-      </Head>
       <Header>
         <FontAwesomeIcon 
           icon={themeType === 'dark' ? ['fas', 'sun'] : ['fas', 'moon']} 

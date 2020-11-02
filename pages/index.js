@@ -13,6 +13,12 @@ export default function Home({ allPostsData }) {
     <Layout home>
       <Head>
         <title>{siteTitle}</title>
+        <meta name="description" content={siteTitle}/>
+
+        <meta name="og:title" content={siteTitle}/>
+        <meta property="og:image" content="/images/profile.png"/>
+        <meta name="twitter:card" content="summary_large_image"/>
+        
       </Head>
       
       <section className={utilStyles.headingMd}>

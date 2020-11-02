@@ -16,17 +16,16 @@ export default function Layout({ children, home }) {
     <div className={styles.container}>
       
       <Head>
-        <link rel="icon" href="/favicon.ico" />
-        <meta
-          name="description"
-          content={siteTitle}
-        />
-        <meta
-          property="og:image"
-          content="/images/profile.png"
-        />
-        <meta name="og:title" content={siteTitle} />
-        <meta name="twitter:card" content="summary_large_image" />
+        
+        {/* <link rel="manifest" href="/manifest.json"/> */}
+
+        <link rel="apple-touch-icon" href="../public/images/profile.png"/>
+        <meta name="apple-mobile-web-app-status-bar" content="#FFE1C4"/>
+        <meta name="theme-color" content="#FFE1C4"/>
+      
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+        <link rel="icon" href="/favicon.ico" type="image/x-icon"/>
+
       </Head>
 
       <header className={styles.header}>
