@@ -12,6 +12,8 @@ import Head from 'next/head'
 import Header from '../components/header'
 import Footer from '../components/footer'
 
+import firebase from '../lib/firebase'
+
 import '../styles/globals.css'
 
 export default function MyApp({ Component, pageProps }) {
