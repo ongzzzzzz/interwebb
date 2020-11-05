@@ -1,16 +1,18 @@
 import Head from 'next/head'
 import Layout from '../../components/layout'
 import Date from '../../components/date'
+
 import utilStyles from '../../styles/utils.module.css'
+
 import { getAllPostIds, getPostData } from '../../lib/posts'
+import Feedback from '../../components/feedback'
 
 export default function Post({ postData }) {
     const uri = postData.title
                 .replace(/[^\w\s]|_/g, "")
-                .replace(/\s+/g, " ")
-                .toLowerCase()
-                .replace(" ", "-");
-    // console.log(uri)
+                .replace(/\s+/g, "-")
+                .toLowerCase();
+    // console.log(uri);
     return (
         <Layout>
             <Head>
@@ -52,6 +54,11 @@ export default function Post({ postData }) {
                 <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
                 {/* <div>{postData.contentHtml}</div> */}
             </article>
+
+            <Feedback
+                post={uri}
+            />
+
         </Layout>
     )
 }

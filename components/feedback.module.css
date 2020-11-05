@@ -1,0 +1,21 @@
+.container{
+    /* background-color: pink; */
+    height: fit-content;
+    width: 100%;
+}
+.heart{
+    font-size: 2rem;
+    transition: .5s;
+}
+.heart:hover{
+    transform: scale(1.2);
+}
+.input{
+    width: 100%;
+}
+.input td{
+    width: 100%;
+}
+.cell{
+    width: 100%;
+}
