@@ -10,15 +10,36 @@ import { addLike, removeLike, getStats } from '../lib/stats'
 import Sparkles from './sparkle'
 
 export default function Feedback(props) {
+    //https://stackoverflow.com/questions/53574614/multiple-calls-to-state-updater-from-usestate-in-component-causes-multiple-re-re
     const [liked, setLike] = useState(false);
     const toggleLike = () => setLike(!liked);
+    
+    var stats = getStats(props.post).then(data => {
+        document.getElementById("likes").innerHTML = data.likes;
+        document.getElementById("commentsCount").innerHTML = `(${data.comments.length-1})`;
 
-    var stats = getStats(props.post);
+        // var comments = data.comments.map(comment => {
+        //     <div></div>
+        // })
+        var comments = [];
+
+        document.getElementById("comments").innerHTML = comments;
+    });
+    console.log(stats)
 
     return (
         <>
         <div className={styles.container}>
-            <p>leave a like? 👀</p>
+            {/* 
+            TODO: style likes count
+            TODO: add comments mapping arr
+            TODO: add comments submission functionality
+            TODO: beautify and spice up main page
+            TODO: add viewcount
+             */}
+            <p id="likes">0</p>
+            {/* <p>{likes}</p> */}
+            {/* <p>leave a like? 👀</p> */}
             <FontAwesomeIcon 
                 icon={liked ? ['fas', 'heart'] : ['far', 'heart'] }
                 className={styles.heart}
@@ -36,19 +57,21 @@ export default function Feedback(props) {
 
             <table className={styles.input} role="presentation">
             {/* https://css-tricks.com/complete-guide-table-element */}
-                <tr>
-                    <td rowspan="2"><Textarea status="secondary" width="100%" placeholder="Comments!"></Textarea></td>
-                    <td><Input status="secondary" className={styles.cell} placeholder="Name"></Input></td>
-                </tr>
-                <tr>
-                    <td><Button type="secondary" className={styles.cell} ghost>Post!!</Button></td>
-                </tr>
+                <tbody>
+                    <tr>
+                        <td rowSpan="2"><Textarea status="secondary" width="100%" placeholder="Comments!" /></td>
+                        <td><Input width="100%" status="secondary" placeholder="Name" /></td>
+                    </tr>
+                    <tr>
+                        <td><Button width="100%" type="secondary" ghost>Post!!</Button></td>
+                    </tr>
+                </tbody>
             </table>
 
-            {/* <Sparkles>{`Comments (${stats.comments.length})`}</Sparkles> */}
-            {/* {stats.comments.map((comment) => {
-
-            })} */}
+            <p>Comments &nbsp;<Sparkles><span id="commentsCount">(0)</span></Sparkles></p>
+            <div id="comments">
+                
+            </div>
             
         </div>
         </>

@@ -56,7 +56,7 @@ export default function Post({ postData }) {
             </article>
 
             <Feedback
-                post={uri}
+                post={`${uri}`}
             />
 
         </Layout>
