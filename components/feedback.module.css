@@ -16,3 +16,28 @@
 .input td{
     width: 100%;
 }
+
+.comment{
+    display: table;
+    width: 100%;
+    border: 1px solid turquoise;
+    padding: 2vh;
+    border-radius: 1vw;
+    margin-bottom: 3vh;
+}
+.comment div{
+    display: table-row;
+    /* background-color: pink; */
+}
+.comment h4{
+    display: table-cell;
+    width: 50%;
+}
+.comment small{
+    display: table-cell;
+    width: 50%;
+    text-align: right;
+}
+.comment p{
+
+}

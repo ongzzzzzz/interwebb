@@ -1,11 +1,19 @@
 import Head from 'next/head'
+import dynamic from 'next/dynamic'
+
 import Layout from '../../components/layout'
 import Date from '../../components/date'
 
 import utilStyles from '../../styles/utils.module.css'
 
 import { getAllPostIds, getPostData } from '../../lib/posts'
-import Feedback from '../../components/feedback'
+// import Feedback from '../../components/feedback'
+
+// https://stackoverflow.com/questions/24647839/referenceerror-document-is-not-defined-in-plain-javascript
+const Feedback = dynamic(
+    () => import('../../components/feedback'),
+    { ssr: false }
+);
 
 export default function Post({ postData }) {
     const uri = postData.title
