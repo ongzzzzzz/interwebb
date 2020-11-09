@@ -16,9 +16,10 @@
     "@geist-ui/react": "^2.1.0-canary.2",
     "@mapbox/rehype-prism": "^0.5.0",
     "@mdx-js/loader": "^1.6.19",
+    "@nandorojo/swr-firestore": "^0.16.0",
     "@next/mdx": "^10.0.0",
     "date-fns": "^2.16.1",
-    "firebase": "^8.0.0",
+    "firebase": "^8.0.1",
     "gray-matter": "^4.0.2",
     "mdx-prism": "^0.3.1",
     "next": "^10.0.0",
@@ -38,6 +39,7 @@
     "remark-parse": "^9.0.0",
     "remark-rehype": "^8.0.0",
     "styled-components": "^5.2.1",
+    "swr": "^0.3.8",
     "unified": "^9.2.0"
   }
 }

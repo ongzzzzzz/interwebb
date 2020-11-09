@@ -6,16 +6,14 @@ import Layout, { siteTitle } from '../components/layout'
 import utilStyles from '../styles/utils.module.css'
 
 import { getSortedPostsData } from '../lib/posts'
-import { addLike } from '../lib/stats'
 
-import { Button } from '@geist-ui/react'
+//https://developer.spotify.com/documentation/web-api/reference/player/get-the-users-currently-playing-track/
+//https://benwiz.com/blog/create-spotify-refresh-token/
+//unrelated but
+//https://spotify-api-graphql-console.herokuapp.com/
+//https://medium.com/french-make-beautiful/graphql-on-top-of-spotify-api-9fd6b771f2ce
 
 export default function Home({ allPostsData }) {
-
-  // function clickedLike(){
-  //   //use state, removeLike if toggleed
-  //   addLike("blog-update");
-  // }
   
   return (
     

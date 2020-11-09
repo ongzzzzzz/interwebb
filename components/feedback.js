@@ -5,103 +5,114 @@ import { Textarea, Input, Button } from '@geist-ui/react'
 import styles from './feedback.module.css'
 import utilStyles from '../styles/utils.module.css'
 
-import firebase from '../lib/firebase'
-import { addLike, removeLike, getStats } from '../lib/stats'
 import Sparkles from './sparkle'
 
+import firebase from '../lib/firebase'
+
+import useSWR from 'swr'
+const fetcher = async (...args) => {
+    const res = await fetch(...args);
+    return res.json();
+};
+
 export default function Feedback(props) {
-    //https://stackoverflow.com/questions/53574614/multiple-calls-to-state-updater-from-usestate-in-component-causes-multiple-re-re
-    const [liked, setLike] = useState(false);
-    const toggleLike = () => setLike(!liked);
+    const [state, setState] = useState({
+        liked: false,
+        comment: "",
+        name: ""
+    })
+    const toggleLike = () => setState(prevState => ({ ...prevState, liked: !prevState.liked }))
+    const commentHandler = (e) => setState(prevState => ({ ...prevState, comment: e.target.value }))
+    const nameHandler = (e) => setState(prevState => ({ ...prevState, name: e.target.value }))
     
-    var stats = getStats(props.post).then(data => {
-        document.getElementById("likes").innerHTML = data.likes;
-        document.getElementById("commentsCount").innerHTML = `(${data.comments.length-1})`;
+    const { data } = useSWR(`/api/stats/${props.post}`, fetcher);
+    // if(data) console.log(data)
 
-        var comments = data.comments.map(comment => {
-            <div className={styles.comment}>
-                <div>
-                    <h4>{comment.name}</h4>
-                    <small>{comment.date}</small>
-                </div>
-                <p>{comment.text}</p>
-            </div>
-        });
-        // var comments = [];
-        console.log(comments);
-        // Dynamic Component?
-        // https://nextjs.org/docs/advanced-features/dynamic-import
+    const updateDoc = (doc, data) => {
+        firebase.firestore().collection('blogs').doc(doc).update(data);
+        return;
+    }
 
-        document.getElementById("comments").innerHTML = comments;
-    }).catch(err => console.error(err));
-    console.log(stats)
+    const submitComment = (doc, name, text) => {
+        firebase.firestore().collection('blogs').doc(doc).update({ 
+            comments: firebase.firestore.FieldValue.arrayUnion(
+                {
+                    name: name,
+                    date: new Date().toString(),
+                    text: text
+                }
+            )
+        })
+    } 
 
     return (
         <>
         <div className={styles.container}>
-            {/* 
-            TODO: style likes count
-            TODO: add comments mapping arr
-            TODO: add comments submission functionality
-            TODO: beautify and spice up main page
-            TODO: add viewcount
-             */}
-            <p id="likes">0</p>
-            {/* <p>{likes}</p> */}
-            {/* <p>leave a like? 👀</p> */}
             <FontAwesomeIcon 
-                icon={liked ? ['fas', 'heart'] : ['far', 'heart'] }
+                icon={state.liked ? ['fas', 'heart'] : ['far', 'heart'] }
                 className={styles.heart}
                 onClick={() => {
-                    if(!liked){
-                        addLike(props.post);
+                    if(!state.liked){
+                        updateDoc(props.post, {likes: data.likes+1})
                     } else{
-                        removeLike(props.post);
+                        updateDoc(props.post, {likes: data.likes-1})
                     }
                     toggleLike();
                 }}
-                style={liked ? {color: 'red'} 
-                            : {color: 'inherit'}}
+                style={state.liked ? {color: 'red'} : {color: 'inherit'}}
             />
+            <p className={styles.heartNums}>{!data ? "uwu" : data.likes}</p>
+
+
 
             <table className={styles.input} role="presentation">
-            {/* https://css-tricks.com/complete-guide-table-element */}
                 <tbody>
                     <tr>
-                        <td rowSpan="2"><Textarea status="secondary" width="100%" placeholder="Comments!" /></td>
-                        <td><Input width="100%" status="secondary" placeholder="Name" /></td>
-                        {/* learn this: https://react.geist-ui.dev/en-us/components/input */}
+                        <td rowSpan="2" className={styles.commentInput}>
+                            <Textarea 
+                                id="text" 
+                                status="secondary" width="100%" 
+                                placeholder="Comments!" 
+                                onChange={commentHandler}
+                            />
+                        </td>
+                        <td>
+                            <Input 
+                                id="name" 
+                                className={styles.name} 
+                                width="100%" height="100%" status="secondary" 
+                                placeholder="Name" 
+                                onChange={nameHandler}
+                            />
+                        </td>
                     </tr>
                     <tr>
-                        <td><Button width="100%" type="secondary" ghost>Post!!</Button></td>
+                        <td>
+                            <Button size="auto" type="secondary" ghost 
+                                onClick={() => submitComment(props.post, state.name, state.comment)}
+                            >post!! ヾ(•ω•`)o</Button>
+                        </td>
                     </tr>
                 </tbody>
             </table>
 
-            <p>Comments &nbsp;<Sparkles><span id="commentsCount">(0)</span></Sparkles></p>
-            <div id="comments">
-                {/* name, DateTime, comment */}
-                {/* <div className={styles.comment}>
-                    <div>
-                        <h4>Osman Utan</h4>
-                        <small>2020-05-14 17:17:17</small>
+            <p>Comments &nbsp;
+                <Sparkles>
+                    <span>{!data ? (0) : `(${data.comments.length})`}</span>
+                </Sparkles>
+            </p>
+
+            <div>
+                {!data ? <div className={styles.comment}>loading...</div> 
+                : data.comments.reverse().map(comment => (
+                    <div className={styles.comment} key={comment.date}>
+                        <div>
+                            <h4>{comment.name}</h4>
+                            <small>{comment.date}</small>
+                        </div>
+                        <p>{comment.text}</p>
                     </div>
-                    <p>heyyyyyy guys!!!</p>
-                </div>
-                <div className={styles.comment}>
-                    <div>
-                        <h4>Osman Utan</h4>
-                        <small>2020-05-14 17:17:17</small>
-                    </div>
-                    <p>heyyyyyy guys!!!</p>
-                </div>
-                <div className={styles.comment}>
-                    <div>
-                        <h4>Osman Utan</h4>
-                        <small>2020-05-14 17:17:17</small>
-                    </div>
-                    <p>heyyyyyy guys!!!</p>
-                </div> */}
+                ))}
             </div>
             
         </div>
