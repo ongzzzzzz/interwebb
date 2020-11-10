@@ -1,16 +1,31 @@
 import Head from 'next/head'
+import dynamic from 'next/dynamic'
+
 import Layout from '../../components/layout'
 import Date from '../../components/date'
+
 import utilStyles from '../../styles/utils.module.css'
+
 import { getAllPostIds, getPostData } from '../../lib/posts'
+import { useRouter } from 'next/router'
+// import Feedback from '../../components/feedback'
+
+// https://stackoverflow.com/questions/24647839/referenceerror-document-is-not-defined-in-plain-javascript
+const Feedback = dynamic(
+    () => import('../../components/feedback'),
+    { ssr: false }
+);
 
 export default function Post({ postData }) {
-    const uri = postData.title
-                .replace(/[^\w\s]|_/g, "")
-                .replace(/\s+/g, " ")
-                .toLowerCase()
-                .replace(" ", "-");
-    // console.log(uri)
+    // const uri = postData.title
+    //             .replace(/[^\w\s]|_/g, "")
+    //             .replace(/\s+/g, "-")
+    //             .toLowerCase();
+    // console.log(uri);
+
+    const { id } = useRouter().query;
+    // console.log(id)
+
     return (
         <Layout>
             <Head>
@@ -21,14 +36,14 @@ export default function Post({ postData }) {
 
                 {/* <!-- Open Graph / Facebook --> */}
                 <meta property="og:type" content="website"/>
-                <meta property="og:url" content={`https://ongzz.me/posts/${uri}`}/>
+                <meta property="og:url" content={`https://ongzz.me/posts/${id}`}/>
                 <meta property="og:title" content={postData.title}/>
                 <meta property="og:description" content={postData.date}/>
                 <meta property="og:image" content="../../public/images/profile.png"/>
 
                 {/* <!-- Twitter --> */}
                 <meta property="twitter:card" content="summary_large_image"/>
-                <meta property="twitter:url" content={`https://ongzz.me/posts/${uri}`}/>
+                <meta property="twitter:url" content={`https://ongzz.me/posts/${id}`}/>
                 <meta property="twitter:title" content={postData.title}/>
                 <meta property="twitter:description" content={postData.date}/>
                 <meta property="twitter:image" content="../../public/images/profile.png"/>
@@ -52,6 +67,11 @@ export default function Post({ postData }) {
                 <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
                 {/* <div>{postData.contentHtml}</div> */}
             </article>
+
+            <Feedback
+                post={id}
+            />
+
         </Layout>
     )
 }

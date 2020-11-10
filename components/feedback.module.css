@@ -1,0 +1,50 @@
+.container{
+    /* background-color: pink; */
+    height: fit-content;
+    width: 100%;
+}
+.heart{
+    display: inline-block;
+
+    font-size: 2rem;
+    transition: .5s;    
+}
+.heart:hover{
+    transform: scale(1.2);
+}
+.heartNums{
+    display: inline-block;
+    font-size: 2rem;
+    margin-left: 1vw;
+}
+
+
+.input{
+    width: 100%;
+}
+
+
+.comment{
+    display: table;
+    width: 100%;
+    border: 1px solid turquoise;
+    padding: 2vh;
+    border-radius: 1vw;
+    margin-bottom: 3vh;
+}
+.comment div{
+    display: table-row;
+    /* background-color: pink; */
+}
+.comment h4{
+    display: table-cell;
+    width: 50%;
+}
+.comment small{
+    display: table-cell;
+    width: 50%;
+    text-align: right;
+}
+.comment p{
+
+}
