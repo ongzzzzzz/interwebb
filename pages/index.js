@@ -33,8 +33,6 @@ export default function Home({ allPostsData }) {
         <h4>it's scaffolded from the starter nextjs app - i'm  still learning it!</h4>
       </section>
 
-      {/* <Button onClick={clickedLike()}>add firebase</Button> */}
-
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Blog</h2>
         <ul className={utilStyles.list}>
