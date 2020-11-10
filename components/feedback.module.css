@@ -22,23 +22,6 @@
 .input{
     width: 100%;
 }
-.commentInput{
-    width: 75%
-}
-
-
-.name{
-    width: 100%;
-    margin: 0 auto;
-}
-.button{
-    width: 96%;
-    margin: 0 auto;
-    border-radius: 5px;
-    color: rgb(133, 133, 133);
-    background-color: inherit;
-    border: 1px solid rgb(133, 133, 133);
-}
 
 
 .comment{
