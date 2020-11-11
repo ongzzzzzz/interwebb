@@ -38,15 +38,17 @@ img {
 }
 
 .icon{
-  border-radius: 69696969px;
+  border-radius: 5px;
   padding: 6px;
   font-size: 2rem;
-  backdrop-filter: invert(50%);
+  /* backdrop-filter: invert(75%); */
+  background-color: #EDF2F7;
+  color: black;
   transition: 0.2s;
 }
 .icon:hover{
   cursor: pointer;
-  backdrop-filter: invert(25%);
+  filter: invert(100%);
 }
 
 .sun{

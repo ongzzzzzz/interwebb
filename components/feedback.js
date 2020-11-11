@@ -108,7 +108,7 @@ export default function Feedback(props) {
             />
             <p className={styles.heartNums}>{!data ? "uwu" : data.likes}</p>
 
-
+            {/* TODO: toast popup error */}
 
             <table className={styles.input} role="presentation">
                 <tbody>

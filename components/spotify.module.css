@@ -1,0 +1,55 @@
+.container{
+    margin: 0 auto;
+    width: fit-content;
+    border-radius: 10px;
+    border: 1px solid #bebebe;
+    padding: 25px 25px 0px 25px;
+
+    white-space: nowrap;
+}
+
+.albumCover{
+    display: inline-block;
+    border-radius: 10px;
+    width: 75px;
+}
+.songInfo{
+    display: inline-block;
+    margin-left: 3vw;
+    margin-right: 1vw;
+}
+
+.songName{
+    text-decoration: underline;
+    color: inherit;
+    font-weight: 3000;
+}
+.songName:hover{
+    text-decoration: underline;
+    text-decoration-style: wavy;
+}
+
+.songArtists{
+    font-size: 0.8em;
+}
+
+.spotifyIcon{
+    color: #1DB954;
+}
+
+
+
+/* .imgContainer{
+    width: 40%;
+    padding: 3%;
+}
+.imgContainer img{
+    border-radius: 5px;
+    max-width: 100%;
+}
+
+.data > td{
+    padding: 3%;
+    height: fit-content;
+    font-size: .5rem
+} */

@@ -2,13 +2,16 @@ import styles from './footer.module.css'
 import utilStyles from '../styles/utils.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
+import Spotify from './spotify'
+
 export default function Footer() {
 
     return (
         <>
-        <div className={styles.spotifyContainer}>
+        <Spotify />
 
-        </div>
+        <br />
+
         <div className={styles.container}>
             <FontAwesomeIcon 
                 icon={['fas', 'arrow-up']} 
@@ -19,7 +22,8 @@ export default function Footer() {
                         left: 0, 
                         behavior: 'smooth'
                     })
-                }/>
+                }
+            />
             <a href="https://l.ongzz.me/g" target="_blank">
                 <FontAwesomeIcon icon={['fab', 'github']} className='icon'/>
             </a>
