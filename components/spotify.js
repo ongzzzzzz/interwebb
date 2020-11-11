@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import styles from './spotify.module.css'
 import utilStyles from '../styles/utils.module.css'
 
-import Link from 'next/link'
 import useSWR from 'swr'
 const fetcher = async (...args) => {
     const res = await fetch(...args);

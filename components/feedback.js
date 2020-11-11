@@ -63,7 +63,6 @@ export default function Feedback(props) {
     }
     
     const { data } = useSWR(`/api/stats/${props.post}`, fetcher, { refreshInterval: 100 });
-    // if(data) console.log(data)
 
     const updateDoc = (doc, data) => {
         firebase.firestore().collection('blogs').doc(doc).update(data);
@@ -71,8 +70,6 @@ export default function Feedback(props) {
     }
 
     const submitComment = (doc, name, text, email) => {
-        //email pun
-        // make sure recaptcha??
         if(name && text && email && validateEmail(email) && state.captcha) {
             if(state.error) toggleError();
 

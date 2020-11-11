@@ -1,5 +1,4 @@
-//https://github.com/rishiosaur/w/blob/master/src/functions/fetch.ts
-//https://github.com/rishiosaur/w/blob/master/pages/api/spotify.ts
+//thanks rishi!!! uwu
 
 import fetch from 'node-fetch'
 import querystring from 'querystring'
@@ -58,9 +57,14 @@ export default async (req, res) => {
 
         if( (data.is_playing) && (data.currently_playing_type != 'ad') ){
 
-            // let songName = data.item.name contains the weird (feat.) thing? remove it : let it be
             spotify.playing = data.is_playing;
-            spotify.song = data.item.name;
+
+            // let songName = data.item.name contains the weird (feat.) thing? remove it : let it be
+            let songName = data.item.name.includes('feat') ? 
+               data.item.name.slice(0, data.item.name.indexOf('(feat.')) : 
+               data.item.name;
+            
+            spotify.song = songName;
             spotify.artists = data.item.artists.map(artist => artist.name).join(', ');
 
             spotify.album = data.item.album.name;
