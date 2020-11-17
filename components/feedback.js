@@ -63,6 +63,7 @@ export default function Feedback(props) {
     }
     
     const { data } = useSWR(`/api/stats/${props.post}`, fetcher, { refreshInterval: 100 });
+    //https://levelup.gitconnected.com/data-fetching-in-react-and-next-js-with-useswr-to-impress-your-friends-at-parties-ec2db732ca6b
 
     const updateDoc = (doc, data) => {
         firebase.firestore().collection('blogs').doc(doc).update(data);
@@ -114,6 +115,7 @@ export default function Feedback(props) {
                             <Textarea 
                                 id="text" 
                                 width="100%" 
+                                
                                 status={state.error ? "error" : "secondary"} 
                                 placeholder="Comments!" 
                                 onChange={commentHandler}
@@ -131,7 +133,7 @@ export default function Feedback(props) {
                                 onErrored={captchaErrorHandler}
                             />
                         </td>
-                        <td style={{}}>
+                        <td className={styles.visibleBox} style={{}}>
                             <Input 
                                 id="name" 
                                 width="100%"
@@ -142,7 +144,8 @@ export default function Feedback(props) {
                             />
                         </td>
                     </tr>
-                    <tr>
+
+                    <tr className={styles.visibleRow}>
                         <td style={{}}>    
                             <Input 
                                 id="email" 
@@ -154,7 +157,45 @@ export default function Feedback(props) {
                             />
                         </td>
                     </tr>
-                    <tr>
+                    <tr className={styles.visibleRow}>
+                        <td style={{}}>
+                            <Button size="large" type="secondary" ghost 
+                                onClick={() => submitComment(
+                                    props.post, 
+                                    state.name, 
+                                    state.comment, 
+                                    state.email
+                                )}
+                            >post!! ヾ(•ω•`)o</Button>
+                        </td>
+                    </tr>
+
+
+                    <tr className={styles.hiddenRow}>
+                        <td style={{}}>
+                            <Input 
+                                id="name" 
+                                width="100%"
+                                status={state.error ? "error" : "secondary"} 
+                                placeholder="Name" 
+                                onChange={nameHandler}
+                                value={state.name}
+                            />
+                        </td>
+                    </tr>
+                    <tr className={styles.hiddenRow}>
+                        <td style={{}}>    
+                            <Input 
+                                id="email" 
+                                width="100%"
+                                status={state.error ? "error" : "secondary"} 
+                                placeholder="Email" 
+                                onChange={emailHandler}
+                                value={state.email}
+                            />
+                        </td>
+                    </tr>
+                    <tr className={styles.hiddenRow}>
                         <td style={{}}>
                             <Button size="large" type="secondary" ghost 
                                 onClick={() => submitComment(
