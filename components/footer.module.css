@@ -1,15 +1,13 @@
-.spotifyContainer{
-    
-}
-
 .container{
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
 }
 
 .container a{
     color: inherit;
     text-decoration: none;
+    
+    margin-left: 8px;
 }
