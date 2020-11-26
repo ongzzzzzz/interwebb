@@ -56,11 +56,10 @@ export default function Home({ allPostsData }) {
 }
 
 export async function getStaticProps() {
-  const allPostsData = getSortedPostsData();
+  const allPostsData = await getSortedPostsData().catch(err => console.error(err));
   return {
     props: {
       allPostsData,
-      
     }
   }
 }

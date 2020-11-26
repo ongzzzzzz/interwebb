@@ -15,6 +15,7 @@ import Footer from '../components/footer'
 import '../styles/globals.css'
 
 import firebase from '../lib/firebase'
+//https://codepen.io/retsugo/pen/XWmMKgW
 
 export default function MyApp({ Component, pageProps }) {
   const [themeType, setThemeType] = useState('dark')

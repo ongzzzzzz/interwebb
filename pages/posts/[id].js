@@ -77,7 +77,7 @@ export default function Post({ postData }) {
 }
 
 export async function getStaticPaths() {
-    const paths = getAllPostIds()
+    const paths = await getAllPostIds()
     return {
         paths, 
         fallback: false
@@ -92,3 +92,5 @@ export async function getStaticProps({ params }) {
         }
     }
 }
+
+//https://firebase.googleblog.com/2020/11/flamelink-cms-for-firebase.html
