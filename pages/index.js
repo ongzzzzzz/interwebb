@@ -55,12 +55,12 @@ export default function Home({ allPostsData }) {
   )
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const allPostsData = await getSortedPostsData().catch(err => console.error(err));
   return {
     props: {
       allPostsData,
     },
-    revalidate: 1
+    // revalidate: 1
   }
 }
