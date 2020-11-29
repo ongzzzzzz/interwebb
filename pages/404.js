@@ -9,7 +9,7 @@ export default function Custom404() {
             <h1 className={styles.text}>404 - Page Not Found</h1>
             <br />
             <h2 className={styles.text}>
-                (｡･∀･)ﾉﾞ => =>
+                (｡･∀･)ﾉﾞ =={'>'}
                 <Link href="/" >
                     <FontAwesomeIcon icon={['fas', 'home']} className='icon'/>
                 </Link>
