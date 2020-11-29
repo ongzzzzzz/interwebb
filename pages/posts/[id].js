@@ -6,7 +6,7 @@ import Date from '../../components/date'
 
 import utilStyles from '../../styles/utils.module.css'
 
-import { getAllPostIds, getPostData } from '../../lib/posts'
+import { getAllPostIds, getPostData, downloadFile } from '../../lib/posts'
 import { useRouter } from 'next/router'
 // import Feedback from '../../components/feedback'
 
@@ -85,7 +85,9 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-    const postData = await getPostData(params.id)
+    const path = require('path')
+    await downloadFile(`posts/${params.id}.md`, path.join(process.cwd(), 'posts', `${params.id}.md`));
+    const postData = await getPostData(params.id);
     return {
         props: {
             postData
