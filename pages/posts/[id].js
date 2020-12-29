@@ -1,10 +1,12 @@
 import Head from 'next/head'
+import Link from 'next/link'
 import dynamic from 'next/dynamic'
 
-import Layout from '../../components/layout'
+import Layout, { name } from '../../components/layout'
 import Date from '../../components/date'
 
 import utilStyles from '../../styles/utils.module.css'
+import styles from '../../styles/Posts.module.css'
 
 import { getAllPostIds, getPostData, downloadFile } from '../../lib/posts'
 import { useRouter } from 'next/router'
@@ -59,6 +61,24 @@ export default function Post({ postData }) {
                         src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
                 </script>
             </Head>
+
+            <header className={styles.header}>
+                <Link href="/">
+                <a>
+                    <img
+                    src="/images/profile.png"
+                    className={`${styles.headerImage} ${utilStyles.borderCircle}`}
+                    alt={name}
+                    />
+                </a>
+                </Link>
+                <h2 className={utilStyles.headingLg}>
+                <Link href="/">
+                    <a className={utilStyles.colorInherit}>{name}</a>
+                </Link>
+                </h2>
+            </header>
+
             <article>
                 <h1 className={utilStyles.headingXl}>{postData.title}</h1>
                 <div className={utilStyles.lightText}>

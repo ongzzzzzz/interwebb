@@ -2,22 +2,19 @@ import Head from 'next/head'
 import Link from 'next/link'
 
 import Date from '../components/date'
-import Layout, { siteTitle } from '../components/layout'
+import Layout, { siteTitle, name } from '../components/layout'
+
 import utilStyles from '../styles/utils.module.css'
+import styles from '../styles/Home.module.css'
 
 import { getSortedPostsData } from '../lib/posts'
 
-//https://developer.spotify.com/documentation/web-api/reference/player/get-the-users-currently-playing-track/
-//https://benwiz.com/blog/create-spotify-refresh-token/
-//unrelated but
-//https://spotify-api-graphql-console.herokuapp.com/
-//https://medium.com/french-make-beautiful/graphql-on-top-of-spotify-api-9fd6b771f2ce
 
 export default function Home({ allPostsData }) {
   
   return (
     
-    <Layout home>
+    <Layout>
       <Head>
         <title>{siteTitle}</title>
         <meta name="description" content={siteTitle}/>
@@ -27,6 +24,15 @@ export default function Home({ allPostsData }) {
         <meta name="twitter:card" content="summary_large_image"/>
         
       </Head>
+
+      <header className={styles.header}>
+        <img
+          src="/images/profile.png"
+          className={`${styles.headerHomeImage} ${utilStyles.borderCircle}`}
+          alt={name}
+        />
+        <h1 className={utilStyles.heading2Xl}>{name}</h1>
+      </header>
       
       <section className={utilStyles.headingMd}>
         <h2>this site is under construction 👀</h2>
