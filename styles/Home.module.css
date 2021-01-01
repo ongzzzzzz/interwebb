@@ -112,3 +112,8 @@
     flex-direction: column;
   }
 }
+
+.webringcontainer{
+  width: fit-content;
+  margin: 0 auto;
+}
